@@ -1,4 +1,4 @@
-<script>
+
 let score = 0;
 let score2 = 0;
 const scoreElem =document.getElementById("score");
@@ -186,4 +186,4 @@ document.addEventListener('keyup', function(e) {
 
 // start the game
 requestAnimationFrame(loop);
-</script>
+
