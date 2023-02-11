@@ -6,10 +6,16 @@
 </head>
   <link src="style.css"></style>
 <body>
-  
-<p>Score <span id="score">0</span></p>
+  <div id="GameOver" > 
+    <p class="center-screen"" style="font-size:xxx-large;color: white;">
+    Game Over
+    <br>
+    <button id="PlayAgain" class=" button button4" style="background-color: white;color:black;margin-left: 55px;border-radius: 20px;" onclick="PlayAgain()">Play Again</button>
+  </p>
+</div>
+<p id="scoreP">Score <span id="score">0</span></p>
 <canvas width="750" height="585" id="game"></canvas>
-<p>Score <span id="score2">0</span></p>
+<p id="score2P">Score <span id="score2">0</span></p>
  <script src="scripts.js"></script>
 </body>
 </html>
