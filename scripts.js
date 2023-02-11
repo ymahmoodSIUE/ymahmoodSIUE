@@ -1,4 +1,4 @@
-
+document.getElementById('GameOver').style.display='none';
 let score = 0;
 let score2 = 0;
 const scoreElem =document.getElementById("score");
@@ -58,7 +58,21 @@ function collides(obj1, obj2) {
 
 // game loop
 function loop() {
+  if(score < 7 && score2 <7)
+{
   requestAnimationFrame(loop);
+}
+else
+{
+  document.getElementById('game').style.display='none';
+  document.getElementById('score').style.display='none';
+  document.getElementById('score2').style.display='none';
+  document.getElementById('scoreP').style.display='none';
+  document.getElementById('score2P').style.display='none';
+  document.getElementById('GameOver').style.display='block';
+  document.getElementById('PlayAgain').style.display='block';
+  return;
+}
   context.clearRect(0,0,canvas.width,canvas.height);
 
   // move paddles by their velocity
@@ -88,14 +102,17 @@ function loop() {
   // move ball by its velocity
   ball.x += ball.dx;
   ball.y += ball.dy;
+  rightPaddle.y=ball.y;
 
   // prevent ball from going through walls by changing its velocity
   if (ball.y < grid) {
     ball.y = grid;
+    rightPaddle.y=ball.y;
     ball.dy *= -1;
   }
   else if (ball.y + grid > canvas.height - grid) {
     ball.y = canvas.height - grid * 2;
+    rightPaddle.y=ball.y;
     ball.dy *= -1;
   }
 
@@ -118,6 +135,7 @@ function loop() {
       ball.resetting = false;
       ball.x = canvas.width / 2;
       ball.y = canvas.height / 2;
+      rightPaddle.y=ball.y;
     }, 400);
   }
 
@@ -185,5 +203,22 @@ document.addEventListener('keyup', function(e) {
 });
 
 // start the game
-requestAnimationFrame(loop);
+  requestAnimationFrame(loop);
+
+function PlayAgain()
+{
+  score=0;
+  score2=0;
+  document.getElementById('game').style.display='block';
+  document.getElementById('score').style.display='block';
+  document.getElementById('score2').style.display='block';
+  document.getElementById('scoreP').style.display='block';
+  document.getElementById('score').innerHTML='0';
+  document.getElementById('score2P').style.display='block';
+  document.getElementById('score2').innerHTML='0';
+  document.getElementById('GameOver').style.display='none';
+  document.getElementById('PlayAgain').style.display='none';
+  console.log('reset scores');
+  loop();
+}
 
